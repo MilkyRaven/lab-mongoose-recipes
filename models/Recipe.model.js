@@ -30,9 +30,10 @@ const recipeSchema = new Schema({
     type: Number,
     min: 0},
   creator: String,
-  created: {
+  created:{
     type: Date,
-    default: { timestamps: true }}
+    default: Date.now
+  }
 });
 
 const Recipe = mongoose.model('Recipe', recipeSchema);
