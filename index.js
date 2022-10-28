@@ -12,12 +12,12 @@ const mongoConnect = async function() {
   try{
     const x = await mongoose.connect(MONGODB_URI)
     console.log(`Connected to the database: "${x.connection.name}"`);
-    //await Recipe.deleteMany()
+  //await Recipe.deleteMany()
    //addRecipe();
    //addVariousRecipes();
-  // updateRecipe()
+  updateRecipe()
    //showRecipes();
-   deleteRecipe("Carrot Cake")
+  deleteRecipe("Carrot Cake")
   } catch (err) {
     console.log('Error connecting to the database' + err)
   }
@@ -44,13 +44,8 @@ const addRecipe = async function() {
 
 const addVariousRecipes = async function() {
   try{
-    // const variousRecipes = await Recipe.create (
-    //   data.forEach((recipe) => {
-    //     Recipe.create(recipe);
-    //   })
-    // )
-
     const variousRecipes = await Recipe.insertMany(data)
+    data.forEach((recipe) => {console.log(recipe.title)})
   }
   catch (err) {
     console.log(err)
