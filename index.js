@@ -12,11 +12,12 @@ const mongoConnect = async function() {
   try{
     const x = await mongoose.connect(MONGODB_URI)
     console.log(`Connected to the database: "${x.connection.name}"`);
-   //await Recipe.deleteMany()
+    //await Recipe.deleteMany()
    //addRecipe();
-   //updateRecipe("Cinnamon Rolls")
+   //addVariousRecipes();
+  // updateRecipe()
    //showRecipes();
-   deleteRecipe("Cinnamon Rolls")
+   deleteRecipe("Carrot Cake")
   } catch (err) {
     console.log('Error connecting to the database' + err)
   }
@@ -41,20 +42,26 @@ const addRecipe = async function() {
 
 //adding various recipes
 
-// const addVariousRecipes = async function() {
-//   try{
-//     const variousRecipes = await Recipe.create()
-//   }
-//   catch (err) {
-//     console.log(err)
-//   }
-// }
+const addVariousRecipes = async function() {
+  try{
+    // const variousRecipes = await Recipe.create (
+    //   data.forEach((recipe) => {
+    //     Recipe.create(recipe);
+    //   })
+    // )
+
+    const variousRecipes = await Recipe.insertMany(data)
+  }
+  catch (err) {
+    console.log(err)
+  }
+}
 
 //update
-updateRecipe = async function(title) {
+updateRecipe = async function() {
   console.log("updating recipe")
   try {
-    const recipe = await Recipe.updateOne({duration: "100"})
+    const recipe = await Recipe.updateOne({title: "Rigatoni alla Genovese"},{duration: "100"})
     console.log("The update was a success! 💕")
   }
   catch (err){console.log(err)}
